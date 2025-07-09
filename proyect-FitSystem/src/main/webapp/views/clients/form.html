@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario Cliente - FitSystem</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!--#include virtual="/views/partials/sidebar.html"-->
+
+    <main class="main-content">
+        <h1>Registro / Edición de Cliente</h1>
+        <form action="/clients/create" method="post" class="form">
+            <label>Nombre</label>
+            <input type="text" name="name" required>
+
+            <label>Empresa</label>
+            <input type="text" name="company">
+
+            <label>Teléfono</label>
+            <input type="text" name="phone">
+
+            <button type="submit" class="btn">Guardar</button>
+            <a href="/views/clients/list.html" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </main>
+</div>
+<script src="/js/app.js"></script>
+</body>
+</html>

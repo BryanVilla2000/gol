@@ -1,0 +1,13 @@
+<header class="header">
+    <div class="header-content">
+        <h1>FitSystem</h1>
+        <button onclick="logout()" class="logout-btn">Cerrar sesión</button>
+    </div>
+</header>
+
+<script>
+    function logout() {
+        localStorage.removeItem('loggedUser');
+        window.location.href = '/views/auth/login.html';
+    }
+</script>

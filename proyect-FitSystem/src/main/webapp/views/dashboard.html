@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - FitSystem</title>
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">FitSystem</div>
+        <nav>
+            <ul>
+                <li class="active"><a href="/views/dashboard.html"><i class="icon-dashboard"></i><span>Dashboard</span></a></li>
+                <li><a href="/views/users/list.html"><i class="icon-user"></i><span>Usuarios</span></a></li>
+                <li><a href="/views/clients/list.html"><i class="icon-clients"></i><span>Clientes</span></a></li>
+                <li><a href="/views/products/list.html"><i class="icon-products"></i><span>Productos</span></a></li>
+                <li><a href="/views/invoices/list.html"><i class="icon-invoices"></i><span>Facturación</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="search">
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="profile">
+                <img src="/images/avatar.png" alt="Avatar">
+            </div>
+        </header>
+
+        <!-- Content -->
+        <section class="content">
+            <h2>Dashboard</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon user"></div>
+                    <div class="card-info">
+                        <h3 id="count-users">0</h3>
+                        <p>Usuarios</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon clients"></div>
+                    <div class="card-info">
+                        <h3 id="count-clients">0</h3>
+                        <p>Clientes</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon products"></div>
+                    <div class="card-info">
+                        <h3 id="count-products">0</h3>
+                        <p>Productos</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon invoices"></div>
+                    <div class="card-info">
+                        <h3 id="count-invoices">0</h3>
+                        <p>Facturas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts">
+                <div class="chart-card">
+                    <canvas id="salesChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <canvas id="topClientsChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    // Mock counts (reemplaza con fetch a tu API)
+    document.getElementById('count-users').innerText = 128;
+    document.getElementById('count-clients').innerText = 54;
+    document.getElementById('count-products').innerText = 237;
+    document.getElementById('count-invoices').innerText = 76;
+
+    // Charts con Chart.js
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    new Chart(salesCtx, {
+        type: 'line',
+        data: {
+            labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul'],
+            datasets: [{
+                label: 'Ventas',
+                data: [120, 190, 170, 220, 200, 230, 250],
+                borderWidth: 2,
+                fill: false
+            }]
+        }
+    });
+
+    const clientsCtx = document.getElementById('topClientsChart').getContext('2d');
+    new Chart(clientsCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Cliente A','Cliente B','Cliente C','Otros'],
+            datasets: [{
+                data: [35, 25, 20, 20],
+                borderWidth: 0
+            }]
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario Factura - FitSystem</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!--#include virtual="/views/partials/sidebar.html"-->
+
+    <main class="main-content">
+        <h1>Registro / Edición de Factura</h1>
+        <form action="/invoices/create" method="post" class="form">
+            <label>Cliente</label>
+            <select name="clientId" required>
+                <option value="">-- Seleccione --</option>
+            </select>
+
+            <label>Productos</label>
+            <select name="productIds" multiple required>
+            </select>
+
+            <button type="submit" class="btn">Guardar</button>
+            <a href="/views/invoices/list.html" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </main>
+</div>
+<script src="/js/app.js"></script>
+</body>
+</html>

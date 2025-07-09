@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - FitSystem</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<main class="login-container">
+    <h2>Iniciar sesión</h2>
+    <form id="loginForm" class="login-form">
+        <label>Nombre de usuario:
+            <input type="text" id="inputNombre" required />
+        </label>
+        <label>Contraseña:
+            <input type="password" id="inputPassword" required />
+        </label>
+        <button type="submit">Ingresar</button>
+        <div class="error" id="errorMsg"></div>
+    </form>
+</main>
+
+<script>
+    // Usuarios predeterminados
+    const usuariosIniciales = [
+        { id: 1, nombre: "Admin", correo: "admin@fit.com", clave: "admin123", rol: "admin" },
+        { id: 2, nombre: "Trabajador", correo: "trabajador@fit.com", clave: "trabajador123", rol: "empleado" },
+        { id: 3, nombre: "Cliente", correo: "cliente@fit.com", clave: "cliente123", rol: "cliente" }
+    ];
+
+    // Guardar solo si no existe
+    if (!localStorage.getItem('usuarios')) {
+        localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    loginForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const nombre = document.getElementById('inputNombre').value.trim();
+        const password = document.getElementById('inputPassword').value.trim();
+
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        const usuario = usuarios.find(u =>
+            u.nombre.toLowerCase() === nombre.toLowerCase() && u.clave === password
+        );
+
+        if (usuario) {
+            localStorage.setItem('loggedUser', JSON.stringify(usuario));
+            window.location.href = '/views/dashboard.html';
+        } else {
+            errorMsg.textContent = 'Usuario o contraseña incorrectos';
+        }
+    });
+</script>
+</body>
+</html>
